@@ -1,0 +1,14 @@
+<div class="search-container">
+	<form id="search-form">
+		<select ng-model="data.filter">
+			<option value="title">title</option>
+			<option value="director">director</option>
+			<option value="year">year</option>
+		</select>
+		</select>
+		<input ng-model="data.search" enter-key="search()" type="search" results="5" placeholder="Enter your search term..." value="" name="search" id="search"></input>
+	</form>
+</div>
+<ul>
+  <li ng-repeat="movie in movies">{{ movie.show_title }}</li>
+</ul>

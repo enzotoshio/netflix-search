@@ -1,21 +1,26 @@
 angular.module('netflixApp')
-  .controller('MainCtrl', function($scope, $http) {
-    var self = this;
-    this.page = this.page || -1;
+  .controller('HomeCtrl', function($scope, $http) {
+    $scope.data = {
+      filter: 'title',
+      search: ''
+    }
 
-    this.get = function() {
-      self.page++;
-      var offset = 4 * self.page;
+    $scope.movies = [];
+
+    $scope.search = function() {
+      var url = 'http://netflixroulette.net/api/api.php?type=json',
+        filter = $scope.data.filter,
+        search = $scope.data.search;
+
+        url += '&' + filter+ '=' + search;
+
       $http({
         method: 'GET',
-        url: 'http://api.giphy.com/v1/gifs/search?q=programmers&api_key=dc6zaTOxFJmzC&limit=4&offset=' + offset
+        url: url
       }).then(function successCallback(response) {
-        $scope.gifs = response.data.data;
+        $scope.movies = response.data;
       }, function errorCallback(response) {
+        $scope.movies = 'Not Found';
       });
     };
-
-    this.get();
-
-    // setInterval(this.get, 20000);
   });
