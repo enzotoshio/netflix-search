@@ -1,22 +1,165 @@
-.search-container {
-  height: 50px;
-  width: 30%;
-  overflow: hidden;
-  -webkit-backface-visibility: hidden;  
+body {
+  background-color: #252525;
+}
+
+h1 {
+  display: inline-block;
+  float: left;
+  margin-right: 50px;
+  font: 40px 'Oleo Script', Helvetica, sans-serif;
+  color: #2b2b2b;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  color: #f86759;
+}
+
+.menu {
+  width: 100%;
+  height: 100px;
+  background-color: #55595d;
+  padding: 25px 20px;
 }
 
 #search-form {
-  height: 100%;
-  width: 100%;
+  float: left;
+  height: 50px;
+  width: 50%;
+  position: relative;
 }
 
-#search {
+.filter-container {
+  position: absolute;
+  z-index: 2;
+  width: 120px;
+  height: 50px;
+  float: left;
+}
+
+.filter-container::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -3.5px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #6ed3cf;
+  z-index: 1;
+}
+
+.filter {
+  width: 120px;
+  height: 50px;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  outline: none;
+  padding-left: 10px;
+  letter-spacing: 1px;
+  position: absolute;
+  z-index: 2;
+}
+
+.filter:hover {
+  cursor: pointer;
+}
+
+.filter > option {
+  color: #000000;
+}
+
+.search {
   height: 100%;
-  width: 100%;
+  width: 70%;
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
+  float: left;
+  background-color: transparent;
+  border-radius: 1px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  line-height: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 1;
+  padding-left: 130px;
+  font-family: arial;
 }
 
 .search::-webkit-input-placeholder {
   color: #efb480;
+}
+
+.movie-list {
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.poster-container {
+  min-width: 284px;
+  max-width: 285px;
+  height: 405px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  background-image: url('http://placehold.it/284x405/252525?text=Ops!');
+}
+
+.poster-container img {
+  transition: all 0.5s ease;
+  height: 405px;
+}
+
+.poster-container:hover img {
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+
+.poster-container:hover .like-button {
+  visibility: visible;
+}
+
+.like-button {
+  fill: #e62739;
+  animation: pulse 1s ease infinite;
+  position: absolute;
+  height: 50px;
+  margin-top: -25px;
+  top: 50%;
+  margin-left: -27px;
+  left: 50%;
+  visibility: hidden;
+}
+
+.like-button:hover {
+  animation: none;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.default-page {
+  height: 100%;
+}
+
+.page-message {
+  color: #e1e8f0;
+  text-align: center;
+  font-size: 40px;
+  font-family: arial;
+  margin-top: 80px;
+}
+
+.page-message-line {
+  display: block;
+  margin-bottom: 10px;
 }
