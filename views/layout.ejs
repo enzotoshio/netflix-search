@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="netflixApp">
   <head>
     <title><%=typeof title == 'undefined' ? 'New Sails App' : title%></title>
 
@@ -29,6 +29,7 @@
     -->
 
     <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
   </head>
 
@@ -59,6 +60,7 @@
     -->
 
     <!--TEMPLATES-->
+    <script type="text/javascript" src="/jst.js"></script>
     <!--TEMPLATES END-->
 
 
@@ -86,6 +88,11 @@
     -->
 
     <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular/angular.js"></script>
+    <script src="/js/dependencies/angular-route/angular-route.js"></script>
+    <script src="/js/init.js"></script>
+    <script src="/js/controllers/home.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
