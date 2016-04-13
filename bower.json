@@ -18,5 +18,8 @@
   ],
   "dependencies": {
     "angular": "^1.5.3"
+  },
+  "devDependencies": {
+    "angular-route": "^1.5.3"
   }
 }
