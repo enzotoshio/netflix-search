@@ -31,7 +31,7 @@ angular.module('netflixApp')
       } else {
         $scope.movies.message = [];
         $scope.movies.message[0] = 'Unfortunately we can\'t search by all movies.';
-        $scope.movies.message[1] = 'Type something in the search field';
+        $scope.movies.message[1] = 'Type something in the search field.';
       }
     };
 
