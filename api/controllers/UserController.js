@@ -31,11 +31,15 @@ module.exports = {
         return res.negotiate(err);
       }
 
-      user.likes.each(function(item, list){
-        if (item.show_id == req.body.like.show_id) {
+
+      for (var i = 0; i < user.likes.length; i++) {
+        if(user.likes[i].show_id == req.body.like.show_id) {
+          console.log(user.likes[i]);
           return;
+        } else {
+          console.log('novo',user.likes[i]);
         }
-      });
+      }
 
       User.native(function(err, collection) {
         if (err) return res.serverError(err);
