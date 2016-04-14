@@ -36,6 +36,19 @@ angular.module('netflixApp')
     };
 
     $scope.like = function (movie){
-      console.log('asdasdasddsa', movie)
+      delete movie.unit;
+      delete movie.$$hashKey;
+
+      $http({
+          method: 'POST',
+          url: '/movies',
+          data: {
+            like: movie
+          }
+        }).then(function successCallback(response) {
+          $scope.movies = response.data;
+        }, function errorCallback(response) {
+          $scope.movies.message = 'Not Found';
+        });
     };
   });

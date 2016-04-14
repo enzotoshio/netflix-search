@@ -44,7 +44,13 @@ module.exports.routes = {
 
   'get /signup': {
     view: 'signup'
-  }
+  },
+
+  'post /movies': 'UserController.postLike',
+
+  'get /movies': 'UserController.getLikes',
+
+  'get /user': 'UserController.home'
 
   /***************************************************************************
    *                                                                          *
