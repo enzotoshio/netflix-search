@@ -33,7 +33,7 @@ module.exports.policies = {
   },
 
   'UserController': {
-    '*': 'isAuthenticated'
+    'home': 'isAuthenticated'
   },
 
   /***************************************************************************
