@@ -2,14 +2,26 @@ body {
   background-color: #252525;
 }
 
-h1 {
-  display: inline-block;
+.logo {
   float: left;
-  margin-right: 50px;
-  font: 40px 'Oleo Script', Helvetica, sans-serif;
+  font-family: 'Oleo Script', Helvetica, sans-serif;
   color: #2b2b2b;
-  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
   color: #f86759;
+}
+
+.menu-title {
+  display: inline-block;
+  font-size: 40px;
+  margin-right: 50px;
+}
+
+.landing-page-title {
+  font-size: 100px;
+  float: none;
+  display: block;
+  margin-top: 50px;
+  text-align: center;
 }
 
 .menu {
@@ -45,6 +57,7 @@ h1 {
     border-top: 7px solid #6ed3cf;
     z-index: 1;
   }
+
 }
 
 .filter {
@@ -68,6 +81,7 @@ h1 {
   option {
     color: #000000;
   }
+
 }
 
 .search {
@@ -114,19 +128,22 @@ h1 {
     transition: all 0.5s ease;
     height: 405px;
   }
-  
+
   &:hover {
     img {
       -webkit-filter: grayscale(1);
       filter: grayscale(1);
     }
+
   }
+
 }
 
 .poster-container:hover {
   .like-button {
     visibility: visible;
   }
+
 }
 
 .like-button {
@@ -150,6 +167,7 @@ h1 {
     &:hover {
       fill: transparent;
     }
+
   }
 
   &:active {
@@ -163,12 +181,22 @@ h1 {
     animation: none;
     cursor: pointer;
   }
+
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
 }
 
 .default-page {

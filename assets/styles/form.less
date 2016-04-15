@@ -1,0 +1,57 @@
+.default-form {
+  display: flex;
+  width: 450px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin: 50px auto 0px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow: hidden;
+
+  h2 {
+    font-family: arial;
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 25px;
+    text-align: center;
+    color: #e62739;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+
+  .field,
+  .button {
+    clear: both;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .field {
+    width: 85%;
+    margin-bottom: 10px;
+    outline-color: #e62739;
+    padding: 0 10px;
+    font-size: 14px;
+  }
+
+  .button {
+    @backgroundColor: #e62739;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin-top: 10px;
+    background-color: @backgroundColor;
+    border: none;
+    color: #ffffff;
+    border-radius: 0 0 5px 5px;
+    font-size: 15px;
+    text-transform: uppercase;
+
+    &:hover {
+      cursor: pointer;
+      background-color: saturate(@backgroundColor, 100%);
+    }
+  }
+
+}
