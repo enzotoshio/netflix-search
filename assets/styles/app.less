@@ -32,19 +32,19 @@ h1 {
   width: 120px;
   height: 50px;
   float: left;
-}
 
-.filter-container::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  margin-top: -3.5px;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 7px solid #6ed3cf;
-  z-index: 1;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -3.5px;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #6ed3cf;
+    z-index: 1;
+  }
 }
 
 .filter {
@@ -60,14 +60,14 @@ h1 {
   letter-spacing: 1px;
   position: absolute;
   z-index: 2;
-}
 
-.filter:hover {
-  cursor: pointer;
-}
+  &:hover {
+    cursor: pointer;
+  }
 
-.filter > option {
-  color: #000000;
+  option {
+    color: #000000;
+  }
 }
 
 .search {
@@ -107,25 +107,33 @@ h1 {
   overflow: hidden;
   position: relative;
   float: left;
-  background-image: url('http://placehold.it/284x405/252525?text=Ops!');
 }
 
-.poster-container img {
-  transition: all 0.5s ease;
-  height: 405px;
+.poster-container {
+  img {
+    transition: all 0.5s ease;
+    height: 405px;
+  }
+  
+  &:hover {
+    img {
+      -webkit-filter: grayscale(1);
+      filter: grayscale(1);
+    }
+  }
 }
 
-.poster-container:hover img {
-  -webkit-filter: grayscale(1);
-  filter: grayscale(1);
-}
-
-.poster-container:hover .like-button {
-  visibility: visible;
+.poster-container:hover {
+  .like-button {
+    visibility: visible;
+  }
 }
 
 .like-button {
-  fill: #e62739;
+  fill: transparent;
+  stroke: #e62739;
+  padding-top: 1px;
+  width: 70px;
   animation: pulse 1s ease infinite;
   position: absolute;
   height: 50px;
@@ -134,11 +142,27 @@ h1 {
   margin-left: -27px;
   left: 50%;
   visibility: hidden;
-}
 
-.like-button:hover {
-  animation: none;
-  cursor: pointer;
+  &.liked {
+    fill: #e62739;
+    animation: none;
+
+    &:hover {
+      fill: transparent;
+    }
+  }
+
+  &:active {
+    animation: none;
+    fill: #ffffff;
+    stroke: none;
+  }
+
+  &:hover {
+    fill: #e62739;
+    animation: none;
+    cursor: pointer;
+  }
 }
 
 @keyframes pulse {

@@ -18,24 +18,68 @@ angular.module('netflixApp')
       $scope.movies.message = ['Searching...'];
 
       if (search) {
-        url += '&' + filter+ '=' + search;
+        url += '&' + filter + '=' + search;
 
         $http({
           method: 'GET',
           url: url
         }).then(function successCallback(response) {
-          $scope.movies = response.data;
+          $scope.getUserLikes(response.data);
         }, function errorCallback(response) {
-          $scope.movies.message = 'Not Found';
+          $scope.movies.message = ['Not Found'];
         });
       } else {
-        $scope.movies.message = [];
-        $scope.movies.message[0] = 'Unfortunately we can\'t search by all movies.';
-        $scope.movies.message[1] = 'Type something in the search field.';
+        $scope.movies.message = [
+          'Unfortunately we can\'t search by all movies.',
+          'Type something in the search field.'
+        ];
       }
     };
 
-    $scope.like = function (movie){
-      console.log('asdasdasddsa', movie)
+    $scope.getUserLikes = function(movies) {
+      $http({
+        method: 'GET',
+        url: '/movies'
+      }).then(function successCallback(response) {
+        $scope.matchLikes(movies, response.data);
+        $scope.movies.message = [];
+      }, function errorCallback(response) {
+        $scope.matchLikes(movies, []);
+        $scope.movies.message = [];
+      });
+    };
+
+    $scope.matchLikes = function(movies, likedMovies) {
+      movies.forEach(function(movie) {
+        likedMovies.forEach(function(liked) {
+          if (movie.show_title === liked.show_title) {
+            movie.liked = true;
+          }
+        });
+      });
+
+      $scope.movies = movies;
+    };
+
+    $scope.like = function(movie) {
+      var method = 'POST';
+
+      delete movie.unit;
+      delete movie.$$hashKey;
+
+      if (movie.liked) {
+        method = 'DELETE';
+        movie.liked = false;
+      } else {
+        movie.liked = true;
+      }
+
+      $http({
+        method: method,
+        url: '/movies',
+        data: {
+          like: movie
+        }
+      });
     };
   });
