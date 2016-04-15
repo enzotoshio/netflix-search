@@ -33,11 +33,11 @@ module.exports = {
 
 
       for (var i = 0; i < user.likes.length; i++) {
-        if(user.likes[i].show_id == req.body.like.show_id) {
+        if (user.likes[i].show_id == req.body.like.show_id) {
           console.log(user.likes[i]);
           return;
         } else {
-          console.log('novo',user.likes[i]);
+          console.log('novo', user.likes[i]);
         }
       }
 
@@ -50,6 +50,19 @@ module.exports = {
             likes: req.body.like
           }
         });
+      });
+    });
+  },
+
+  deleteLike: function(req, res) {
+    User.native(function(err, collection) {
+      if (err) return res.serverError(err);
+      collection.update({
+        email: req.user.email
+      }, {
+        $pull: {
+          likes: { show_id: req.body.like.show_id }
+        }
       });
     });
   }

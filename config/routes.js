@@ -48,6 +48,8 @@ module.exports.routes = {
 
   'post /movies': 'UserController.postLike',
 
+  'delete /movies': 'UserController.deleteLike',
+
   'get /movies': 'UserController.getLikes',
 
   'get /user': 'UserController.home'
