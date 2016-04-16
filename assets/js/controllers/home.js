@@ -1,4 +1,4 @@
-angular.module('netflixApp')
+angular.module('netSearchApp')
   .controller('HomeCtrl', function($scope, $http) {
     $scope.movies = [];
     $scope.movies.message = ['Search any movie or director.'];

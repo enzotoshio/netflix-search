@@ -1,16 +1,21 @@
 angular
-  .module('netflixApp', [
+  .module('netSearchApp', [
     'ngRoute'
   ])
   .config(function($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/home', {
         templateUrl: 'templates/home.html',
         controller: 'HomeCtrl',
         controllerAs: 'home'
       })
+      .when('/restart', {
+        redirectTo: '/home'
+      })
+      .when('/', {
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/home'
       });
   })
   .directive('enterKey', function() {
