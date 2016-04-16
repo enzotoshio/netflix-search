@@ -35,7 +35,10 @@ module.exports.routes = {
   '/': 'UserController.home',
 
   'get /login': {
-    view: 'login'
+    view: 'login',
+    locals: {
+      layout: 'notLogged'
+    }
   },
 
   'post /login': 'AuthController.login',
@@ -43,7 +46,10 @@ module.exports.routes = {
   '/logout': 'AuthController.logout',
 
   'get /signup': {
-    view: 'signup'
+    view: 'signup',
+    locals: {
+      layout: 'notLogged'
+    }
   },
 
   'post /movies': 'UserController.postLike',
