@@ -5,6 +5,9 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var actionUtil = require('sails/lib/hooks/blueprints/actionUtil');
+var _ = require('sails/node_modules/lodash');
+
 module.exports = {
   home: function(req, res) {
     res.view('homepage');
@@ -20,6 +23,31 @@ module.exports = {
       sails.log('Wow, there are users.  Check it out:', user.likes);
       console.log(user);
       return res.json(user.likes);
+    });
+  },
+
+  create: function(req, res) {
+    var Model = actionUtil.parseModel(req);
+    var data = actionUtil.parseValues(req);
+
+    Model.create(data).exec(function created(err, newInstance) {
+      if (err) return res.negotiate(err);
+
+      if (req._sails.hooks.pubsub) {
+        if (req.isSocket) {
+          Model.subscribe(req, newInstance);
+          Model.introduce(newInstance);
+        }
+
+        var publishData = _.isArray(newInstance) ?
+          _.map(newInstance, function(instance) {
+            return instance.toJSON();
+          }) :
+          newInstance.toJSON();
+        Model.publishCreate(publishData, !req.options.mirror && req);
+      }
+
+      res.redirect('/');
     });
   },
 
@@ -61,7 +89,9 @@ module.exports = {
         email: req.user.email
       }, {
         $pull: {
-          likes: { show_id: req.body.like.show_id }
+          likes: {
+            show_id: req.body.like.show_id
+          }
         }
       });
     });
