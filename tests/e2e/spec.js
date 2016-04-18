@@ -90,7 +90,8 @@ describe('NetSearch search', function() {
 
     var hasClass = function(element, cls) {
       return element.getAttribute('class').then(function(classes) {
-        return classes.split(' ').indexOf(cls) !== -1;
+        var parsedClasses = classes.split(' ');
+        return (parsedClasses.indexOf(cls) !== -1);
       });
     };
 
@@ -117,7 +118,7 @@ describe('NetSearch search', function() {
       });
     }
 
-    if (isLiked) {
+    if (isLiked === true) {
       testUnlike();
       testLike();
     } else {
