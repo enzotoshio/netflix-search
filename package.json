@@ -37,5 +37,11 @@
     "url": "git://github.com/enzotoshio/netflix.git"
   },
   "author": "enzotoshio",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-jasmine": "^0.3.8"
+  },
+  "engine": "node 0.12.3"
 }
