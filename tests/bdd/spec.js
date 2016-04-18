@@ -1,4 +1,4 @@
-describe('NetSearch signup page', function() {
+describe('NetSearch signup', function() {
   beforeEach(function() {
     browser.get('http://localhost:1337/signup');
   });
@@ -30,7 +30,7 @@ describe('NetSearch signup page', function() {
   });
 });
 
-describe('NetSearch login page', function() {
+describe('NetSearch login', function() {
   beforeEach(function() {
     browser.get('http://localhost:1337/');
   });
@@ -54,5 +54,77 @@ describe('NetSearch login page', function() {
     }, 10000);
 
     expect(element(by.cssContainingText('.page-message', 'Search any movie or director.')));
+  });
+});
+
+describe('NetSearch search', function() {
+  beforeEach(function() {
+    browser.get('http://localhost:1337/#/home');
+  });
+
+  it('should search and bring results', function() {
+    element(by.css('.search')).sendKeys('tarantino');
+    element(by.cssContainingText('option', 'director')).click();
+    element(by.css('.search')).click();
+
+    browser.actions().sendKeys(protractor.Key.ENTER).perform();
+
+    browser.driver.wait(function() {
+      return browser.driver.isElementPresent(By.css('.movie-list'));
+    }, 10000);
+
+    expect(element(by.css('.movie-list')).isPresent()).toBe(true);
+  });
+
+  it('should like and unlike', function(done) {
+    browser.ignoreSynchronization = true;
+    element(by.css('.search')).sendKeys('tarantino');
+    element(by.cssContainingText('option', 'director')).click();
+    element(by.css('.search')).click();
+
+    browser.actions().sendKeys(protractor.Key.ENTER).perform();
+
+    browser.driver.wait(function() {
+      return browser.driver.isElementPresent(By.css('.movie-list'));
+    }, 10000);
+
+    var hasClass = function(element, cls) {
+      return element.getAttribute('class').then(function(classes) {
+        return classes.split(' ').indexOf(cls) !== -1;
+      });
+    };
+
+    var movie = element.all(by.css('.like-button')).get(0),
+      isLiked = hasClass(movie, 'liked');
+
+    var testUnlike = function() {
+      browser.actions().mouseMove(
+        element.all(by.css('.poster-container')).get(0)
+      ).perform().then(function(obj) {
+        var button = element.all(by.css('.like-button')).get(0);
+        button.click();
+        expect(hasClass(button, 'liked')).toBe(false);
+      });
+    }
+
+    var testLike = function() {
+      browser.actions().mouseMove(
+        element.all(by.css('.poster-container')).get(0)
+      ).perform().then(function(obj) {
+        var button = element.all(by.css('.like-button')).get(0);
+        button.click();
+        expect(hasClass(button, 'liked')).toBe(true);
+      });
+    }
+
+    if (isLiked) {
+      testUnlike();
+      testLike();
+    } else {
+      testLike();
+      testUnlike();
+    }
+
+    done();
   });
 });
