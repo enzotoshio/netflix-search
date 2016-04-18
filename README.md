@@ -4,10 +4,18 @@ Movies search using Netflix Roulette API.
 
 ## Installation
 
-You need node v0.12.3 and npm as a prerequisite.
+You need node v0.12.3, npm and mongo as a prerequisite.
 
 ### Run
-Sails
+
+Mongo:
+```sh
+$ mongo
+$ use netflix
+$ db.createCollection('user')
+```
+
+Sails:
 ```sh
 $ sudo npm i -g sails
 $ npm i
@@ -15,7 +23,7 @@ $ sails lift
 ```
 
 ### Test
-Unit test - Karmajs
+Unit test - Karmajs:
 ```sh
 $ npm i
 $ npm i -g karma-cli
