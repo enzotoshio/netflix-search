@@ -19,6 +19,7 @@ Unit test - Karmajs
 ```sh
 $ npm i
 $ npm i -g karma-cli
+$ karma start
 ```
 
 E2e tests - Protractor:
@@ -26,4 +27,5 @@ E2e tests - Protractor:
 $ npm i -g protractor@1.8.0
 $ webdriver-manager update
 $ webdriver-manager start
+$ protractor tests/e2e/config.js
 ```
