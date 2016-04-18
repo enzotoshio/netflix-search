@@ -50,6 +50,10 @@ angular.module('netSearchApp')
     };
 
     $scope.matchLikes = function(movies, likedMovies) {
+      if (!Array.isArray(movies)) {
+        movies = [movies];
+      }
+
       movies.forEach(function(movie) {
         likedMovies.forEach(function(liked) {
           if (movie.show_title === liked.show_title) {
