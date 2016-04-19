@@ -24,7 +24,7 @@ describe('NetSearch signup', function() {
       return browser.driver.isElementPresent(By.tagName('h1'));
     }, 10000);
 
-    expect(browser.getCurrentUrl()).toBe('http://localhost:1337/login#/');
+    expect(browser.getCurrentUrl()).toContain('http://localhost:1337/login');
 
     done();
   });
@@ -40,7 +40,7 @@ describe('NetSearch login', function() {
   });
 
   it('should redirect to login', function() {
-    expect(browser.getCurrentUrl()).toBe('http://localhost:1337/login#/');
+    expect(browser.getCurrentUrl()).toContain('http://localhost:1337/login');
   });
 
   it('should have a login and have a initial message in the search result area', function() {
@@ -117,7 +117,6 @@ describe('NetSearch search', function() {
         expect(hasClass(button, 'liked')).toBe(true);
       });
     }
-
 
     hasClass(movie, 'liked').then(function(response){
       if (response === true) {
