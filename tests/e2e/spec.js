@@ -118,13 +118,16 @@ describe('NetSearch search', function() {
       });
     }
 
-    if (isLiked === true) {
-      testUnlike();
-      testLike();
-    } else {
-      testLike();
-      testUnlike();
-    }
+
+    hasClass(movie, 'liked').then(function(response){
+      if (response === true) {
+        testUnlike();
+        testLike();
+      } else {
+        testLike();
+        testUnlike();
+      }
+    });
 
     done();
   });
