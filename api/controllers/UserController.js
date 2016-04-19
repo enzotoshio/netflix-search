@@ -20,8 +20,7 @@ module.exports = {
       if (err) {
         return res.negotiate(err);
       }
-      sails.log('Wow, there are users.  Check it out:', user.likes);
-      console.log(user);
+      
       return res.json(user.likes);
     });
   },
@@ -31,23 +30,27 @@ module.exports = {
     var data = actionUtil.parseValues(req);
 
     Model.create(data).exec(function created(err, newInstance) {
-      if (err) return res.negotiate(err);
+      if (err) {
+        res.view('signup', {
+          error: 'Email already registered.'
+        });
+      } else {
+        if (req._sails.hooks.pubsub) {
+          if (req.isSocket) {
+            Model.subscribe(req, newInstance);
+            Model.introduce(newInstance);
+          }
 
-      if (req._sails.hooks.pubsub) {
-        if (req.isSocket) {
-          Model.subscribe(req, newInstance);
-          Model.introduce(newInstance);
+          var publishData = _.isArray(newInstance) ?
+            _.map(newInstance, function(instance) {
+              return instance.toJSON();
+            }) :
+            newInstance.toJSON();
+          Model.publishCreate(publishData, !req.options.mirror && req);
         }
 
-        var publishData = _.isArray(newInstance) ?
-          _.map(newInstance, function(instance) {
-            return instance.toJSON();
-          }) :
-          newInstance.toJSON();
-        Model.publishCreate(publishData, !req.options.mirror && req);
+        res.redirect('/');
       }
-
-      res.redirect('/');
     });
   },
 

@@ -37,6 +37,7 @@ module.exports.routes = {
   'get /login': {
     view: 'login',
     locals: {
+      error: null,
       layout: 'notLogged'
     }
   },
@@ -48,6 +49,7 @@ module.exports.routes = {
   'get /signup': {
     view: 'signup',
     locals: {
+      error: null,
       layout: 'notLogged'
     }
   },

@@ -2,8 +2,11 @@
 
 <form method="POST" action="/login" class="default-form">
   <h2>Login</h2>
+  <% if (error) { %>
+    <span class="warning"><%= error %></span>
+  <% } %>
   <input type="email" name="email" class="field">
-  <input type="password" name="password" class="field">
+  <input type="password" name="password" minlength="6" class="field">
   <input type="submit" value="submit" class="button">
 </form>
 
