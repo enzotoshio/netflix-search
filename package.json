@@ -44,5 +44,5 @@
     "karma-chrome-launcher": "^0.2.3",
     "karma-jasmine": "^0.3.8"
   },
-  "engine": "node 0.12.3"
+  "engine": "node 5.10.1"
 }
