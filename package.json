@@ -29,7 +29,10 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "webdriver": "webdriver-manager start >/dev/null 2>&1 &",
+    "test": "sh ./test.sh",
+    "install-tests": "sh ./install.sh"
   },
   "main": "app.js",
   "repository": {
@@ -39,7 +42,9 @@
   "author": "enzotoshio",
   "license": "",
   "devDependencies": {
+    "angular-mocks": "^1.5.5",
     "bower": "^1.7.9",
+    "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
     "karma-jasmine": "^0.3.8"

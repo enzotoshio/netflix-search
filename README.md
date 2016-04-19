@@ -23,6 +23,20 @@ $ sails lift
 ```
 
 ### Test
+
+To install:
+```sh
+$ npm run install-tests
+```
+
+To run each command in one bash:
+```sh
+$ npm run webdriver
+$ npm run test
+```
+
+OR
+
 Unit test - Karmajs:
 ```sh
 $ npm i
