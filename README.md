@@ -31,7 +31,7 @@ $ npm run install-tests
 
 To run:
 
-execute each command in a separate bash:
+execute each of the commands above in a separated bash:
 ```sh
 $ npm run webdriver
 $ npm run test
