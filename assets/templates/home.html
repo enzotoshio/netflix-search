@@ -12,6 +12,7 @@
     </select>
     <div ng-model="data.search" enter-key="search()" placeholder="Enter your search term..." name="search" class="search" contenteditable></div>
   </form>
+  <a href="/logout" class="menu-logout">logout</a>
 </header>
 <ul class="movie-list" ng-if="movies.length > 0">
   <li ng-repeat="movie in movies" class="poster-container">
