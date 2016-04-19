@@ -29,13 +29,14 @@ To install:
 $ npm run install-tests
 ```
 
-To run each command in one bash:
+To run:
+execute each command in one bash:
 ```sh
 $ npm run webdriver
 $ npm run test
 ```
 
-OR
+### Test (Alternative)
 
 Unit test - Karmajs:
 ```sh
