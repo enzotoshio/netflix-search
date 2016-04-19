@@ -30,7 +30,7 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "webdriver": "webdriver-manager start >/dev/null 2>&1 &",
+    "webdriver": "webdriver-manager start",
     "test": "sh ./test.sh",
     "install-tests": "sh ./install.sh"
   },
