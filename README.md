@@ -4,7 +4,7 @@ Movies search using Netflix Roulette API.
 
 ## Installation
 
-You need node v0.12.3, npm and mongo as a prerequisite.
+You need node v5.10.1, npm and mongo as a prerequisite.
 
 ### Run
 
